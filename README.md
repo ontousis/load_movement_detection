@@ -20,7 +20,7 @@ delay_after_detection_ms: 200                  #Delay between detections, to sup
 ```
 ### Included Files
 
-In the accident_detection_src folder there is the python source code, the Dockerfile needed to creat the docker image and the config folder, which contains the file with the parameters mentioned above. In the following link, there is a .tar file that can be used to obtain a preconstructed image of the application. Once the accident_detection.tar is downloaded, the image can beloaded as follows:
+In the accident_detection_src folder there is the python source code, the Dockerfile needed to creat the docker image and the config folder, which contains the file with the parameters mentioned above. In the following link, there is a .tar file that can be used to obtain a preconstructed image of the application. Once the accident_detection.tar is downloaded, the image can be loaded as follows:
 ```
 sudo docker load < accident_detection.tar
 ```
