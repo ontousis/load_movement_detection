@@ -1,0 +1,12 @@
+minio_url: "127.0.0.1:9000"
+minio_usr: "minioadmin"
+minio_pwd: "minioadmin"
+minio_bucket_name: "bucket001"
+mongodb_server_ip: "127.0.0.1"
+mongodb_server_port: 27017
+mongodb_db_name: "potential_accident_record"
+mongodb_collection_name: "accidents"
+mongodb_username: "Admintst"
+mongodb_password: "Admintst"
+detection_threshold: 10
+delay_after_detection_ms: 200
