@@ -5,13 +5,16 @@ This Repository contains an implementation of a motion detection system designed
 ### Parameter Configuration
 The necessary parameters can be configured through the config.yaml file:
 ```
-minio_url: "127.0.0.1:9000" #minio server
-minio_usr: "minioadmin"
-minio_pwd: "minioadmin"
-minio_bucket_name: "bucket001"
-mongodb_server_ip: "127.0.0.1"
-mongodb_server_port: 27017
-mongodb_db_name: "potential_accident_record"
-mongodb_collection_name: "accidents"
-detection_threshold: 10
+minio_url: "127.0.0.1:9000"                    #Minio server ip and port
+minio_usr: "minioadmin"                        #Minio user
+minio_pwd: "minioadmin"                        #Minio password
+minio_bucket_name: "bucket001"                 #Bucket name
+mongodb_server_ip: "127.0.0.1"                 #Ip for mongodb connection
+mongodb_server_port: 27017                     #Port for mongodb connection 
+mongodb_db_name: "potential_accident_record"   #Database name
+mongodb_collection_name: "accidents"           #Name of collection in database
+mongodb_username: "Admintst"                   #Database user
+mongodb_password: "Admintst"                   #Password of database user
+detection_threshold: 10                        #Threshold above which the system assumes there might have been an accident
+delay_after_detection_ms: 200                  #Delay between detections, to suppress multiple entries, should be set lower if these entries are not a concern
 ```
