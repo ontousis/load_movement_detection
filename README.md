@@ -18,3 +18,14 @@ mongodb_password: "Admintst"                   #Password of database user
 detection_threshold: 10                        #Threshold above which the system assumes there might have been an accident
 delay_after_detection_ms: 200                  #Delay between detections, to suppress multiple entries, should be set lower if these entries are not a concern
 ```
+### Included Files
+
+In the accident_detection_src folder there is the python source code, the Dockerfile needed to creat the docker image and the config folder, which contains the file with the parameters mentioned above. In the following link, there is a .tar file that can be used to obtain a preconstructed image of the application. Once the accident_detection.tar is downloaded, the image can beloaded as follows:
+```
+sudo docker load < accident_detection.tar
+```
+The application can be run as seen below:
+```
+sudo docker run --device /dev/video0 --network="host" -v $(pwd)/config:/config accident_detection
+```
+$(pwd)/config assumes that the config folder with the configuration file is in the directory where the above commands are executed. Of course the path can be adapted. --device /dev/video0 is used so that we can have access to the host's camera (assuming it is properly configured).
