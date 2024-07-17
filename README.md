@@ -29,3 +29,11 @@ The application can be run as seen below:
 sudo docker run --device /dev/video0 --network="host" -v $(pwd)/config:/config accident_detection
 ```
 $(pwd)/config assumes that the config folder with the configuration file is in the directory where the above commands are executed. Of course the path can be adapted. --device /dev/video0 is used so that we can have access to the host's camera (assuming it is properly configured).
+
+### Running from Source
+
+For the application to be run directly from source, some packages will need to be installed, running the following:
+```
+pip3 install opencv-python-headless numpy minio pymongo PyYAML
+```
+The code was tested using python 3.10, however other versions that support these packages are unlikely to cause problems.
