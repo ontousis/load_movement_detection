@@ -1,6 +1,6 @@
 # Load Movement Detection
 
-This Repository contains an implementation of a motion detection system designed to watch the load of a vehicle and identify possible accidents by evaluating the change that has occurred between frames. When a potential accident is detected, the last frame -annotated with information about the detection and a bounding box indicating the most significant detected movement- is uploaded on a minio bucket and a record with the incident's time, percentage of change between frames and a url pointing to the uploaded image is written in a MongoDB database.
+This Repository contains an implementation of a motion detection system designed to watch the load of a vehicle and identify possible accidents by evaluating the change that has occurred between frames. When a potential accident is detected, the last frame -annotated with information about the detection and a bounding box indicating the most significant detected movement- is uploaded on a minio bucket and a record with the incident's time, percentage of change between frames and a url pointing to the uploaded image is written in a MongoDB database. Also, during the specified delay after a successful detection, a buzzer will sound to notify the driver.
 
 ### Parameter Configuration
 The necessary parameters can be configured through the config.yaml file:
@@ -16,7 +16,7 @@ mongodb_collection_name: "accidents"           #Name of collection in database
 mongodb_username: "Admintst"                   #Database user
 mongodb_password: "Admintst"                   #Password of database user
 detection_threshold: 10                        #Threshold above which the system assumes there might have been an accident
-delay_after_detection_ms: 200                  #Delay between detections, to suppress multiple entries, should be set lower if these entries are not a concern
+delay_after_detection_ms: 500                  #Delay between detections, to suppress multiple entries. This is also the duration of the sound of the buzzer
 ```
 ### Included Files
 
@@ -34,6 +34,6 @@ $(pwd)/config assumes that the config folder with the configuration file is in t
 
 For the application to be run directly from source, some packages will need to be installed with pip, running the following:
 ```
-pip3 install opencv-python-headless numpy minio pymongo PyYAML
+pip3 install opencv-python-headless numpy minio pymongo PyYAML gpiozero
 ```
 The code was tested using python 3.10, however other versions that support these packages are unlikely to cause problems.
