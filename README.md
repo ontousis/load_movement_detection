@@ -16,7 +16,7 @@ mongodb_collection_name: "accidents"           #Name of collection in database
 mongodb_username: "Admintst"                   #Database user
 mongodb_password: "Admintst"                   #Password of database user
 detection_threshold: 10                        #Threshold above which the system assumes there might have been an accident
-delay_after_detection_ms: 500                  #Delay between detections, to suppress multiple entries. This is also the duration of the sound of the buzzer
+delay_after_detection_ms: 1000                  #Delay between detections, to suppress multiple entries. This is also the duration of the sound of the buzzer
 ```
 ### Included Files
 
