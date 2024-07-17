@@ -32,7 +32,7 @@ $(pwd)/config assumes that the config folder with the configuration file is in t
 
 ### Running from Source
 
-For the application to be run directly from source, some packages will need to be installed, running the following:
+For the application to be run directly from source, some packages will need to be installed with pip, running the following:
 ```
 pip3 install opencv-python-headless numpy minio pymongo PyYAML
 ```
