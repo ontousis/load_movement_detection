@@ -9,4 +9,4 @@ mongodb_collection_name: "accidents"
 mongodb_username: "Admintst"
 mongodb_password: "Admintst"
 detection_threshold: 10
-delay_after_detection_ms: 200
+delay_after_detection_ms: 1000
