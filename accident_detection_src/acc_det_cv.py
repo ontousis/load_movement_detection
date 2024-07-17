@@ -5,6 +5,7 @@ from minio import Minio
 from pymongo import MongoClient
 import yaml
 import os
+from gpiozero import Buzzer
 
 # Function to detect changes between frames, draw bounding box around the biggest change and record frame in case of changes over a threshold
 def detect_changes(pr_lst, frame2, minio_client, bucketname, collection, change_threshold):
@@ -90,6 +91,8 @@ def detect_changes(pr_lst, frame2, minio_client, bucketname, collection, change_
 # Open camera
 camera = cv2.VideoCapture(0)
 
+buzzer = Buzzer(17)
+
 #Ininialize minio client and MongoDb client from config file
 with open("config/config.yaml") as cf:
     conf=yaml.safe_load(cf.read())
@@ -129,6 +132,7 @@ prev_lst.append(prev_frame)
 current_time=-1
 time_init=0
 
+buzzer_on=0
 while True:
     # Read the next frame
     ret, next_frame = camera.read()
@@ -140,9 +144,14 @@ while True:
     det=0
     current_time=time.time_ns()//1000000
     if current_time-time_init>=delay:
+    	if buzzer_on==1:
+    		buzzer_on=0
+    		buzzer.off()
     	result_frame,det = detect_changes(prev_lst, next_frame, minio_client, minio_bucket_name, collection, ch_thr)
     if det:
     	det=0
+    	buzzer.on()
+    	buzzer_on=1
     	time_init=time.time_ns()//1000000
     	
     #append it to the list of previous frames
