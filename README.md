@@ -28,19 +28,9 @@ delay_after_detection_ms: 1000                 #Delay between detections, to sup
 ```
 ### Included Files
 
-In the accident_detection_src folder there is the python source code, the Dockerfile needed to create the docker image and the config folder, which contains the file with the parameters mentioned above. In the following link: https://drive.google.com/file/d/17Bsopfie-6SiDp1fgzCHe0_PaCXLPf7Y/view?usp=sharing there is a .tar file that can be used to obtain a preconstructed image of the application. Once the accident_detection.tar is downloaded, the image can be loaded as follows:
-```
-sudo docker load < accident_detection.tar
-```
-The application can be run as seen below:
-```
-sudo docker run --device /dev/video0 --network="host" -v $(pwd)/config:/config accident_detection
-```
-$(pwd)/config assumes that the config folder with the configuration file is in the directory where the above commands are executed. Of course the path can be adapted. --device /dev/video0 is used so that we can have access to the host's camera (assuming it is properly configured).
+In the accident_detection_src folder there is the python source code, the Dockerfile needed to create the docker image and the config folder, which contains the file with the parameters mentioned above. I
 
-### Running from Source
-
-For the application to be run directly from source, some packages will need to be installed with pip, running the following:
+For the application to be run from source, some packages will need to be installed with pip, running the following:
 ```
 pip3 install opencv-python-headless numpy minio pymongo PyYAML gpiozero
 ```
