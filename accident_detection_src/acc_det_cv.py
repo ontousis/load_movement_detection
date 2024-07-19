@@ -6,6 +6,7 @@ from pymongo import MongoClient
 import yaml
 import os
 from gpiozero import Buzzer
+import picamera2
 
 # Function to detect changes between frames, draw bounding box around the biggest change and record frame in case of changes over a threshold
 def detect_changes(pr_lst, frame2, minio_client, bucketname, collection, change_threshold):
@@ -16,7 +17,7 @@ def detect_changes(pr_lst, frame2, minio_client, bucketname, collection, change_
     max_max_contour=None
     fin_cumulative_area=0
     percentage_changed=0
-    
+
     for frame1 in pr_lst:
         # Convert frames to grayscale
         gray1 = cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY)
@@ -46,15 +47,15 @@ def detect_changes(pr_lst, frame2, minio_client, bucketname, collection, change_
                     max_max_area = max_area
                     max_max_contour = max_contour
                     fin_cumulative_area=-1
-                    
+
         if fin_cumulative_area==-1:
             fin_cumulative_area=cumulative_area
-            
+
         if max_contour is not None:
             # Calculate percentage of pixels changed
             total_pixels = frame1.shape[0] * frame1.shape[1]
             percentage_changed += (cumulative_area / total_pixels) * 100
-            
+
     # Draw bounding box around the largest change area
     avg_percentage_changed=percentage_changed/len(pr_lst)
     if max_max_contour is not None:
@@ -88,9 +89,6 @@ def detect_changes(pr_lst, frame2, minio_client, bucketname, collection, change_
         det=1
     return frame2, det
 
-# Open camera
-camera = cv2.VideoCapture(0)
-
 buzzer = Buzzer(17)
 
 #Ininialize minio client and MongoDb client from config file
@@ -110,6 +108,14 @@ client = MongoClient(db_url)
 db=client[conf["mongodb_db_name"]]
 collection=db[conf["mongodb_collection_name"]]
 
+use_usb=conf["use_usb"]
+
+if use_usb:
+    camera = cv2.VideoCapture(conf["usb_cam_id"])
+else:
+    camera= picamera2.Picamera2()
+    camera.start()
+
 # Initialize the biggest percentage change
 biggest_percentage_change = 0
 
@@ -124,7 +130,11 @@ count=0
 ch_thr=conf["detection_threshold"]
 delay=conf["delay_after_detection_ms"]
 # Read the first frame
-ret, prev_frame = camera.read()
+
+if use_usb:
+    ret, prev_frame = camera.read()
+else:
+    prev_frame=camera.capture_array()
 
 prev_lst.append(prev_frame)
 
@@ -135,7 +145,10 @@ time_init=0
 buzzer_on=0
 while True:
     # Read the next frame
-    ret, next_frame = camera.read()
+    if use_usb:
+        ret, next_frame = camera.read()
+    else:
+        next_frame=camera.capture_array()
 
     # Set the current frame as the previous frame for the next iteration ()
     prev_frame = next_frame.copy()
@@ -153,7 +166,7 @@ while True:
     	buzzer.on()
     	buzzer_on=1
     	time_init=time.time_ns()//1000000
-    	
+
     #append it to the list of previous frames
     count+=1
     if count<3:
@@ -162,5 +175,3 @@ while True:
         if count==6:
            count=3
         prev_lst[count%3]=prev_frame
-# Release camera and close windows
-camera.release()
