@@ -4,7 +4,7 @@ This Repository contains an implementation of a motion detection system designed
 
 ### Requirements
 
-For the execution of the code a RaspberryPi 5 is requred (older versions will most likely not cause problems). A camera -configured as video source 0- is essential for frame capturing and a buzzer connected to GPIO pin 17 is also necessary for the notification function.
+For the execution of the code a RaspberryPi 4b or 5 is required (older versions will most likely not cause problems). An Rpi camera or a usb camera is essential for frame capturing and a buzzer connected to GPIO pin 17 is also necessary for the notification function.
 
 For storing the recorded incidents, a mongodb server will need to be setup, with its connection and naming parameters configured in the config.yaml file, as shown below. The application creates entries with 3 fields -Recorded frame URL, time of the incident and percentage of change detected-. Manual definition of the database entry format  is not necessary, since mongoDB will automatically store the provided data in the specified collection. If that collection does not exist, it will be automatically created. 
 
@@ -30,10 +30,10 @@ usb_cam_id: "/dev/video0"                      #Name of usb device-used only if 
 ```
 ### Included Files
 
-In the accident_detection_src folder there is the python source code, the Dockerfile needed to create the docker image and the config folder, which contains the file with the parameters mentioned above. I
+In the accident_detection_src folder there is the python source code and the config folder, which contains the file with the parameters mentioned above.
 
 For the application to be run from source, some packages will need to be installed with pip, running the following:
 ```
 pip3 install opencv-python-headless numpy minio pymongo PyYAML gpiozero
 ```
-The code was tested using python 3.9.2, however other versions that support these packages are unlikely to cause problems.
+The code was tested using python 3.9.2, however other versions that support these packages are unlikely to cause problems. The picamera2 interface that is necessary comes preinstalled for systems released after September 2022.
