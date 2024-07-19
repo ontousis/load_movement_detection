@@ -1,8 +1,6 @@
 import cv2
 import numpy as np
 import time
-from minio import Minio
-from pymongo import MongoClient
 import yaml
 import os
 from gpiozero import Buzzer
