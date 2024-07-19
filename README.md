@@ -34,4 +34,4 @@ For the application to be run from source, some packages will need to be install
 ```
 pip3 install opencv-python-headless numpy minio pymongo PyYAML gpiozero
 ```
-The code was tested using python 3.10, however other versions that support these packages are unlikely to cause problems.
+The code was tested using python 3.9.2, however other versions that support these packages are unlikely to cause problems.
