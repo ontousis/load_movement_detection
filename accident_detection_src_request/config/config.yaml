@@ -1,0 +1,5 @@
+backend_url: "http://192.168.1.5:5000/upload"
+detection_threshold: 10
+delay_after_detection_ms: 1000
+use_usb: 0
+usb_cam_id: "/dev/video0"
