@@ -11,7 +11,7 @@ For receiving and storing the data, the backend will have to accept the mentione
 requests.post(backend_url,files={'image':open("potential_accident"+str(t)+".jpg","rb")},data={'time':time.strftime("%d_%m_%Y_%H_%M_%S"),'change_percentage':round(avg_percentage_changed,2)})
 ```
 
-The body of the request contains one file named 'image' -the recorded frame-, and 2 data entries, named 'time' and 'change_percentage' that specify the time of detection and the detected change between frames.
+The body of the request contains 1 file named 'image' -the recorded frame-, and 2 data entries, named 'time' and 'change_percentage' that specify the time of detection and the detected change between frames.
 
 ### Parameter Configuration
 The necessary parameters can be configured through the config.yaml file:
