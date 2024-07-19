@@ -25,6 +25,8 @@ mongodb_username: "Admintst"                   #Database user
 mongodb_password: "Admintst"                   #Password of database user
 detection_threshold: 10                        #Threshold above which the system assumes there might have been an accident
 delay_after_detection_ms: 1000                 #Delay between detections, to suppress multiple entries. This is also the duration of the sound of the buzzer
+use_usb: 0                                     #0 for using raspberry camera, 1 for usb webcam
+usb_cam_id: "/dev/video0"                      #Name of usb device-used only if use_usb==1
 ```
 ### Included Files
 
