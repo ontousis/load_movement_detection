@@ -6,7 +6,7 @@ This Repository contains an implementation of a motion detection system designed
 
 For the execution of the code a RaspberryPi 4b or 5 is required (older versions will most likely not cause problems, however there might be compatibility issues related to the Rpi camera with Operating Systems released before "Bullseye"). A camera -raspberry or usb camera- is essential for frame capturing and a buzzer connected to GPIO pin 17 is also necessary for the notification function.
 
-For receiving and storing the data, the backend will have to accept the mentioned POST request, that is created as shown here:
+For receiving and storing the data, the backend will have to accept the mentioned POST request, that is created with the following command:
 ```
 requests.post(backend_url,files={'image':open("potential_accident"+str(t)+".jpg","rb")},data={'time':time.strftime("%d_%m_%Y_%H_%M_%S"),'change_percentage':round(avg_percentage_changed,2)})
 ```
@@ -24,7 +24,16 @@ usb_cam_id: "/dev/video0"                      #Name of usb device-used only if 
 ```
 ### Included Files
 
-In the accident_detection_src_request folder there is the python source code and the config folder, which contains the file with the parameters mentioned above.
+In the accident_detection_src_request folder there is the python source code and the config folder, which contains the file with the parameters mentioned above. In [this](https://drive.google.com/file/d/1jhuAMYwjuww3rktXxiw8MJNphvpyipmr/view?usp=sharing) link there is a .tar file that can be used to load a docker image with the application like this:
+```
+sudo docker load < accident_detection_request_final.tar
+```
+The resulting image can be run as shown here:
+```
+sudo docker run --privileged --network="host" -v $(pwd)/config:/config accident_detection_request
+```
+$(pwd)/config assumes that the config folder in which the configuration file is located is inside the directory where the above command is executed. Of course the path can be adapted.
+### Running from Source
 
 For the application to be run from source, some packages will need to be installed with pip, running the following:
 ```
