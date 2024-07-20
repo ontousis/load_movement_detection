@@ -4,7 +4,7 @@ This Repository contains an implementation of a motion detection system designed
 
 ### Requirements
 
-For the execution of the code a RaspberryPi 4b or 5 is required (older versions will most likely not cause problems, however there might be compatibility issues related to the Rpi camera with Operating Systems released before "Bullseye"). A camera -raspberry or usb camera- is essential for frame capturing and a buzzer connected to GPIO pin 17 is also necessary for the notification function.
+For the execution of the code a RaspberryPi 4b or 5 is required (older versions will most likely not cause problems, however there might be compatibility issues related to the Rpi camera with Operating Systems released before "Bullseye"). A raspberry or usb camera is essential for frame capturing and a buzzer connected to GPIO pin 17 is also necessary for the notification function.
 
 For receiving and storing the data, the backend will have to accept the mentioned POST request, that is created with the following command:
 ```
