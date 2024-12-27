@@ -30,7 +30,7 @@ usb_cam_id: "/dev/video0"                      #Name of usb device-used only if 
 ```
 ### Included Files
 
-In the accident_detection_src folder there is the python source code and the config folder, which contains the file with the parameters mentioned above. In [this](https://drive.google.com/file/d/1X59pdrMCAewhdyexQ0smInZ9zD0PfIb8/view?usp=sharing) link there is a .tar file that can be used to load the application's docker image like this:
+In the accident_detection_src folder there is the python source code and the config folder, which contains the file with the parameters mentioned above. In [this](https://drive.google.com/file/d/1VI_LzslAWZ3m9c93opq_5qypu38dv6Dm/view?usp=sharing) link there is a .tar file that can be used to load the application's docker image like this:
 ```
 sudo docker load < accident_detection_direct.tar
 ```
