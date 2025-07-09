@@ -68,7 +68,7 @@ def detect_changes(frame1, frame2, backend_url, change_threshold):
     if percentage_changed>=change_threshold:
         t=time.time_ns()//1000000
         cv2.imwrite("potential_accident"+str(t)+".jpg",frame2)
-        #requests.post(backend_url,files={'image':open("potential_accident"+str(t)+".jpg","rb")},data={'time':time.strftime("%d_%m_%Y_%H_%M_%S"),'change_percentage':round(percentage_changed,2)})
+        requests.post(backend_url,files={'image':open("potential_accident"+str(t)+".jpg","rb")},data={'time':time.strftime("%d_%m_%Y_%H_%M_%S"),'change_percentage':round(percentage_changed,2)})
         os.remove("potential_accident"+str(t)+".jpg")
         det=1
     return frame2, det
