@@ -1,14 +1,4 @@
-minio_url: "127.0.0.1:9000"
-minio_usr: "minioadmin"
-minio_pwd: "minioadmin"
-minio_bucket_name: "bucket001"
-mongodb_server_ip: "127.0.0.1"
-mongodb_server_port: 27017
-mongodb_db_name: "potential_accident_record"
-mongodb_collection_name: "accidents"
-mongodb_username: "Admintst"
-mongodb_password: "Admintst"
-detection_threshold: 10
-delay_after_detection_ms: 1000
-use_usb: 0
-usb_cam_id: "/dev/video0"
+backend_url: "http://192.168.1.5:5000/upload"  #The url where the POST request is sent
+detection_threshold: 10                        #Threshold above which the system assumes there might have been an accident
+delay_after_detection_ms: 1000                 #Delay between detections, to suppress multiple entries. This is also the duration of the sound of the buzzer
+usb_cam_id: "/dev/video0"                      #Name of usb device-used only if use_usb==1
