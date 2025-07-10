@@ -13,19 +13,9 @@ The frames recorded when apotential accident is detected are stored in a minio b
 ### Parameter Configuration
 The necessary parameters can be configured through the config.yaml file:
 ```
-minio_url: "127.0.0.1:9000"                    #Minio server ip and port
-minio_usr: "minioadmin"                        #Minio user
-minio_pwd: "minioadmin"                        #Minio password
-minio_bucket_name: "bucket001"                 #Bucket name
-mongodb_server_ip: "127.0.0.1"                 #Ip for mongodb connection
-mongodb_server_port: 27017                     #Port for mongodb connection 
-mongodb_db_name: "potential_accident_record"   #Database name
-mongodb_collection_name: "accidents"           #Name of collection in database
-mongodb_username: "Admintst"                   #Database user
-mongodb_password: "Admintst"                   #Password of database user
+backend_url: "http://192.168.1.5:5000/upload"  #The url where the POST request is sent
 detection_threshold: 10                        #Threshold above which the system assumes there might have been an accident
 delay_after_detection_ms: 1000                 #Delay between detections, to suppress multiple entries. This is also the duration of the sound of the buzzer
-use_usb: 0                                     #0 for using raspberry camera, 1 for usb webcam
 usb_cam_id: "/dev/video0"                      #Name of usb device-used only if use_usb==1
 ```
 ### Included Files
