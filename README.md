@@ -16,12 +16,12 @@ usb_cam_id: "/dev/video0"                      #Name of usb device-used only if 
 ```
 ### Included Files
 
-In the accident_detection_src folder there is the python source code and the config folder, which contains the file with the parameters mentioned above. In [this](https://drive.google.com/file/d/1vaXJ9ytIbQdkx6QYxqSN8CVukRSKq1E5/view?usp=sharing) link there is a .tar file that can be used to load the application's docker image like this:
+In the accident_detection_src folder there is the python source code and the config folder, which contains the file with the parameters mentioned above. In [this](https://drive.google.com/file/d/1FsybtwW3e3B3nrPUon8kfXKYLtQnTD0X/view?usp=sharing) link there is a .tar file that can be used to load the application's docker image like this:
 ```
-sudo docker load < load_move_det_10_7_25.tar
+sudo docker load < load_move_det_23_7_25.tar
 ```
 The resulting image can be run as shown here:
 ```
-sudo docker run --privileged --network="host" -v $(pwd)/config:/config load_move_det_10_7_25
+sudo docker run --privileged --network="host" -v $(pwd)/config:/config load_move_det_23_7_25
 ```
 $(pwd)/config assumes that the config folder in which the configuration file is located is inside the directory where the above command is executed. Of course the path can be adapted.
